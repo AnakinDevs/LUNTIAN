@@ -17,12 +17,20 @@ Research-aligned software foundation for the LUNTIAN school prototype: ESP32 bin
 - `leanbot`: mission integration contract
 - `digital-twin`: dashboard/backend requirements
 - `shared/protocol`: versioned event schema
-- `tests`: automated contract tests
+- `tests`: standard C++ protocol contract test
 - `docs`: architecture, hardware, and validation
 
 ## Run
 Install PlatformIO and run `pio run` in `firmware/esp32`.
-Run Python tests from the repository root: `python -m unittest discover -s tests -v`.
+Build and run the C++ protocol contract test from the repository root:
+
+```sh
+cmake -S tests -B build/tests
+cmake --build build/tests
+./build/tests/luntian_protocol_contract_test
+```
+
+The test uses standard C++ and CMake; it does not require Python.
 
 ## Safety and scope
 The supplied research does not define a verified pin map, driver models, actuator feedback, camera model/classes, Leanbot API, or dashboard stack. These are not guessed. Baseline firmware intentionally does not energize actuators. Confirm wiring, electrical ratings, guards, limit feedback, and an independent emergency stop before hardware commissioning. Fertilizer output is a potential product; software does not certify its quality or safety.

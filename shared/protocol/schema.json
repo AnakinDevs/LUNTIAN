@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LUNTIAN event envelope",
+  "type": "object",
+  "required": ["schema_version", "event_id", "device_id", "event_type", "timestamp", "payload"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "event_id": { "type": "string", "minLength": 1 },
+    "device_id": { "type": "string", "minLength": 1 },
+    "event_type": {
+      "type": "string",
+      "enum": ["bin.telemetry", "bin.full", "leanbot.mission", "vision.detection", "sorting.result", "batch.status", "process.status", "device.fault", "device.heartbeat"]
+    },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "payload": { "type": "object" }
+  },
+  "additionalProperties": false
+}
